@@ -25,11 +25,20 @@ function App() {
     setText("");
   };
 
+  const endGame = () => {
+    setStart(false);
+    setWordCount(calculateWordCount());
+  };
+
   useEffect(() => {
     if (start && timeRemaining > 0) {
       setTimeout(() => {
         setTimeRemaining(timeRemaining - 1);
       }, 1000);
+    }
+
+    if (timeRemaining === 0) {
+      endGame();
     }
   }, [timeRemaining, start]);
 
@@ -39,7 +48,7 @@ function App() {
       <textarea name="text" value={text} onChange={handleChange} />
       <h4>Remaining time: {timeRemaining}</h4>
       <button onClick={startGame}>Start</button>
-      <h1>Word count: </h1>
+      <h1>Word count: {wordCount}</h1>
     </div>
   );
 }
