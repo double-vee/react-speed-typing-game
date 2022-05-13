@@ -4,6 +4,7 @@ function App() {
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(5);
+  const [start, setStart] = useState(false);
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -18,20 +19,26 @@ function App() {
     return wordsArray.length;
   };
 
+  const startGame = () => {
+    setStart(true);
+    setTimeRemaining(5);
+    setText("");
+  };
+
   useEffect(() => {
-    if (timeRemaining > 0) {
+    if (start && timeRemaining > 0) {
       setTimeout(() => {
         setTimeRemaining(timeRemaining - 1);
       }, 1000);
     }
-  }, [timeRemaining]);
+  }, [timeRemaining, start]);
 
   return (
     <div className="container">
       <h1>How fast do you type?</h1>
       <textarea name="text" value={text} onChange={handleChange} />
       <h4>Remaining time: {timeRemaining}</h4>
-      <button>Start</button>
+      <button onClick={startGame}>Start</button>
       <h1>Word count: </h1>
     </div>
   );
