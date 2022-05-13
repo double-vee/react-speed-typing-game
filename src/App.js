@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function App() {
   const STARTING_TIME = 10;
+
+  const textAreaRef = useRef(null);
 
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
@@ -26,6 +28,7 @@ function App() {
     setTimeRemaining(STARTING_TIME);
     setText("");
     setWordCount(0);
+    textAreaRef.current.focus();
   };
 
   const endGame = () => {
@@ -48,7 +51,12 @@ function App() {
   return (
     <div className="container">
       <h1>How fast do you type?</h1>
-      <textarea name="text" value={text} onChange={handleChange} />
+      <textarea
+        name="text"
+        value={text}
+        onChange={handleChange}
+        ref={textAreaRef}
+      />
       <h4>Remaining time: {timeRemaining}</h4>
       <button onClick={startGame} disabled={start}>
         Start
