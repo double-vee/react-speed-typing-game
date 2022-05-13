@@ -23,6 +23,7 @@ function App() {
     setStart(true);
     setTimeRemaining(5);
     setText("");
+    setWordCount(0);
   };
 
   const endGame = () => {
