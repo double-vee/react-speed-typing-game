@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
 function App() {
+  const STARTING_TIME = 10;
+
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(5);
+  const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME);
   const [start, setStart] = useState(false);
 
   const handleChange = (e) => {
@@ -21,7 +23,7 @@ function App() {
 
   const startGame = () => {
     setStart(true);
-    setTimeRemaining(5);
+    setTimeRemaining(STARTING_TIME);
     setText("");
     setWordCount(0);
   };
