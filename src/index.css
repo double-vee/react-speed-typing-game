@@ -69,3 +69,9 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
+
+@media (min-width: 700px) {
+  textarea {
+    width: 600px;
+  }
+}
